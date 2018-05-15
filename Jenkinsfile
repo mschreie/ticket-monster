@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Dev: Build Tasks') {
            steps {
-              openshiftBuild bldCfg: 'monster', env: [[name: 'MAVEN_MIRROR_URL', value: 'http://nexus3-nexus.apps.1db2.oslab.opentlc.com/repository/maven-all-public']], namespace: 'ticket-monster-dev', showBuildLogs: 'true', verbose: 'false', waitTime: '', waitUnit: 'sec'
+              openshiftBuild bldCfg: 'monster', env: [[name: 'MAVEN_MIRROR_URL', value: 'http://nexus3-nexus.apps.a447.oslab.opentlc.com/repository/maven-all-public']], namespace: 'ticket-monster-dev', showBuildLogs: 'true', verbose: 'false', waitTime: '', waitUnit: 'sec'
               openshiftVerifyBuild bldCfg: 'monster', checkForTriggeredDeployments: 'false', namespace: 'ticket-monster-dev', verbose: 'false', waitTime: ''
            }
         }

@@ -1,0 +1,20 @@
+pipeline {
+  agent any
+    stages {
+        stage('Test: Tag Image') {
+           steps {
+              openshiftTag alias: 'false', destStream: 'ticket-monster', destTag: 'test', destinationAuthToken: '', destinationNamespace: 'test', namespace: 'dev', srcStream: 'ticket-monster', srcTag: 'latest', verbose: 'false'
+           }
+        }
+        stage('Test: Deploy new image') {
+           steps {
+              openshiftDeploy depCfg: 'monster', namespace: 'ticket-monster-test', verbose: 'false', waitTime: '', waitUnit: 'sec'
+              openshiftVerifyDeployment depCfg: 'monster', namespace: 'ticket-monster-test', replicaCount: '1', verbose: 'false', verifyReplicaCount: 'true', waitTime: '', waitUnit: 'sec'
+              openshiftVerifyService namespace: 'ticket-monster-test', svcName: 'monster', verbose: 'false', retryCount: '5'
+           }
+        }
+    }
+}
+
+
+
