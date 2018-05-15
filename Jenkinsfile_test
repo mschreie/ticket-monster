@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test: Tag Image') {
            steps {
-              openshiftTag alias: 'false', destStream: 'monster', destTag: 'test', destinationAuthToken: '', destinationNamespace: 'test', namespace: 'ticket-monster-dev', srcStream: 'monster', srcTag: 'latest', verbose: 'false'
+              openshiftTag alias: 'false', destStream: 'monster', destTag: 'test', destinationAuthToken: '', destinationNamespace: 'ticket-monster-test', namespace: 'ticket-monster-dev', srcStream: 'monster', srcTag: 'latest', verbose: 'false'
            }
         }
         stage('Test: Deploy new image') {
